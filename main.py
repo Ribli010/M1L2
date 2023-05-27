@@ -4,18 +4,11 @@ from discord.ext import commands
 intents = discord.Intents.default()
 intents.message_content = True
 
-bot = commands.Bot(command_prefix='$', intents=intents)
+bot = commands.Bot(command_prefix='=', intents=intents)
 
-@bot.event
-async def on_ready():
-    print(f'We have logged in as {bot.user}')
+@bot.command(name='bot')
+async def _bot(ctx):
+    """Is the bot cool?"""
+    await ctx.send('Yes, the bot is cool.')
 
-@bot.command()
-async def hello(ctx):
-    await ctx.send(f'Привет! Я бот {bot.user}!')
-
-@bot.command()
-async def heh(ctx, count_heh = 5):
-    await ctx.send("he" * count_heh)
-
-bot.run("token")
+bot.run("MTEwOTM4NDY1ODgyNDcyNDU0MA.GF7_iA.4WGZW8Oe46yckxdDe9x3MtCvg0LIKZTAyv0SeE")
