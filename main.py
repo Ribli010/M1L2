@@ -1,12 +1,21 @@
-import random
+import discord
+from discord.ext import commands
 
-symbols = "+-/*!&$#?=@abcdefghijklnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+intents = discord.Intents.default()
+intents.message_content = True
 
-lenght = int(input("сколько символов должно быть в пароле: "))
+bot = commands.Bot(command_prefix='$', intents=intents)
 
-password=''
+@bot.event
+async def on_ready():
+    print(f'We have logged in as {bot.user}')
 
-for i in range(lenght):
-    password += random.choice(symbols)
+@bot.command()
+async def hello(ctx):
+    await ctx.send(f'Привет! Я бот {bot.user}!')
 
-print(password)
+@bot.command()
+async def heh(ctx, count_heh = 5):
+    await ctx.send("he" * count_heh)
+
+bot.run("token")
